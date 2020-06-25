@@ -1,13 +1,13 @@
-const { createGetUsers } = require('./get-users.js');
+const { createGetUsers } = require("./get-users.js");
 
 const createUser = ({ core, sequelize }) => {
   const getUsers = createGetUsers({
     core,
-    sequelize,
+    sequelize
   });
 
   return {
-    getUsers,
+    getUsers
   };
 };
 

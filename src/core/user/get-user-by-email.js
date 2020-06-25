@@ -1,8 +1,8 @@
-const { JobNotFoundError } = require('../../common/errors.js');
+const { JobNotFoundError } = require("../../common/errors.js");
 
 const createGetUserByEmail = ({ sequelize }) => {
   const {
-    models: { User },
+    models: { User }
   } = sequelize;
 
   const getUserByEmail = async ({ email }) => {

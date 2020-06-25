@@ -1,5 +1,5 @@
-const { createUserCore } = require('./user/index.js');
-const { createFirestoreCore } = require('./firestore/index.js');
+const { createUserCore } = require("./user/index.js");
+const { createFirestoreCore } = require("./firestore/index.js");
 
 const createCore = ({ sequelize }) => {
   const userCore = createUserCore({ sequelize });
@@ -7,7 +7,7 @@ const createCore = ({ sequelize }) => {
 
   return {
     userCore,
-    firestoreCore,
+    firestoreCore
   };
 };
 

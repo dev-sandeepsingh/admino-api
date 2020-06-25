@@ -1,14 +1,14 @@
-const BullQueue = require('bull');
-const Arena = require('bull-arena');
-const { redisUrl } = require('../config');
+const BullQueue = require("bull");
+const Arena = require("bull-arena");
+const { redisUrl } = require("../config");
 
-const QUEUE_NAME = 'c2-queue';
+const QUEUE_NAME = "c2-queue";
 
 const Queue = ({ name = QUEUE_NAME, url = redisUrl } = {}) =>
   new BullQueue(name, url);
 
 const JobNames = {
-  SendUserRegisterEmail: 'send-user-register-email',
+  SendUserRegisterEmail: "send-user-register-email"
 };
 
 const uiApp = Arena(
@@ -19,17 +19,17 @@ const uiApp = Arena(
         name: QUEUE_NAME,
 
         // Hostname or queue prefix, you can put whatever you want.
-        hostId: 'nodejs-boilerplate-host-api',
+        hostId: "nodejs-boilerplate-host-api",
 
         // Redis auth.
-        url: redisUrl,
-      },
-    ],
+        url: redisUrl
+      }
+    ]
   },
   {
     // Let express handle the listening.
-    disableListen: true,
-  },
+    disableListen: true
+  }
 );
 
 module.exports = { Queue, uiApp, JobNames };

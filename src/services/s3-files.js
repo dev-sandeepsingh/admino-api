@@ -1,12 +1,12 @@
-const AWS = require('aws-sdk');
-const { FailedToCopyFileError } = require('../common/errors');
-const { s3: config, origin } = require('../config');
+const AWS = require("aws-sdk");
+const { FailedToCopyFileError } = require("../common/errors");
+const { s3: config, origin } = require("../config");
 
 const buildTmpKey = key => `tmp/${key}`;
 
 const isTmpKey = key => /^tmp\//.test(key);
 
-const getKeyFromTmpKey = tmpKey => tmpKey.replace(/^tmp\//, '');
+const getKeyFromTmpKey = tmpKey => tmpKey.replace(/^tmp\//, "");
 
 const getReceiptPhotoUrlFromKey = key => `${origin}/${key}`;
 
@@ -20,7 +20,7 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
           Key: key,
           Bucket: s3Config.bucket,
           Body: data,
-          ContentType: mimetype,
+          ContentType: mimetype
         },
         err => {
           if (err) {
@@ -28,7 +28,7 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
             return;
           }
           resolve();
-        },
+        }
       );
     });
 
@@ -36,20 +36,20 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
     s3.getObject(
       {
         Key: key,
-        Bucket: s3Config.bucket,
+        Bucket: s3Config.bucket
       },
       function handleGetObject(err, data) {
         const {
-          httpResponse: { statusCode },
+          httpResponse: { statusCode }
         } = this;
         const { Body, ContentType } = data || {};
 
         callback(err, {
           body: Body,
           contentType: ContentType,
-          statusCode,
+          statusCode
         });
-      },
+      }
     );
   };
 
@@ -57,7 +57,7 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
     key,
     urlExpiresIn = 100 * 60 * 1000, // 10 minutes,
     contentLengthRange,
-    contentType,
+    contentType
   }) =>
     new Promise((resolve, reject) => {
       const params = {
@@ -66,19 +66,19 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
         Expires: urlExpiresIn,
         Conditions: [],
         Fields: {
-          key,
-        },
+          key
+        }
       };
 
       if (contentType) {
-        params.Fields['Content-Type'] = contentType;
+        params.Fields["Content-Type"] = contentType;
       }
 
       if (contentLengthRange) {
         params.Conditions.push([
-          'content-length-range',
+          "content-length-range",
           contentLengthRange[0],
-          contentLengthRange[1],
+          contentLengthRange[1]
         ]);
       }
 
@@ -96,7 +96,7 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
     const params = {
       Bucket: s3Config.bucket,
       CopySource: `${s3Config.bucket}/${from.key}`,
-      Key: to.key,
+      Key: to.key
     };
     return new Promise((resolve, reject) => {
       s3.copyObject(params, (originalError, data) => {
@@ -117,7 +117,7 @@ const createFileService = ({ s3Config } = { s3Config: config }) => {
     buildTmpKey,
     isTmpKey,
     getKeyFromTmpKey,
-    copy,
+    copy
   };
 };
 
@@ -126,5 +126,5 @@ module.exports = {
   buildTmpKey,
   isTmpKey,
   getKeyFromTmpKey,
-  getReceiptPhotoUrlFromKey,
+  getReceiptPhotoUrlFromKey
 };

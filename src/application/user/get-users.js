@@ -1,7 +1,7 @@
 const createGetUsers = ({
   sequelize: {
-    models: { User },
-  },
+    models: { User }
+  }
 }) => {
   const getUsers = async ({ page, perPage, sort, orderBy }) => {
     const offset = (page - 1) * perPage;
@@ -13,8 +13,8 @@ const createGetUsers = ({
       offset,
       order: [
         [sort, orderBy],
-        ['email', 'desc'],
-      ],
+        ["email", "desc"]
+      ]
     });
   };
 

@@ -1,17 +1,17 @@
 module.exports = {
   up: (queryInterface, { STRING, INTEGER }) =>
-    queryInterface.createTable('User', {
+    queryInterface.createTable("User", {
       userId: {
         allowNull: false,
         primaryKey: true,
         type: INTEGER,
-        autoIncrement: true,
+        autoIncrement: true
       },
       email: {
         type: STRING,
         allowNull: false,
-        unique: true,
-      },
+        unique: true
+      }
     }),
-  down: queryInterface => queryInterface.dropTable('User'),
+  down: queryInterface => queryInterface.dropTable("User")
 };

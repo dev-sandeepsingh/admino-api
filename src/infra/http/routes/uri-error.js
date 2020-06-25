@@ -1,7 +1,7 @@
 const {
   errorCodes: { badRequestErrorCode },
-  ApiError,
-} = require('../utils/response');
+  ApiError
+} = require("../utils/response");
 
 const createUriErrorRoute = () => (error, req, res, next) => {
   if (!(error instanceof URIError)) {
@@ -11,7 +11,7 @@ const createUriErrorRoute = () => (error, req, res, next) => {
 
   const apiError = new ApiError({
     code: badRequestErrorCode,
-    message: error.message,
+    message: error.message
   });
   next(apiError);
 };

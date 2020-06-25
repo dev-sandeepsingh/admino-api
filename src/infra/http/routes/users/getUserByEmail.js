@@ -1,18 +1,18 @@
-const check = require('express-validator');
+const check = require("express-validator");
 // const { validateInput } = require('../../utils/validate-input.js');
 const {
   toApiResponse,
   ApiError,
-  errorCodes: { notFoundErrorCode },
-} = require('../../utils/response.js');
+  errorCodes: { notFoundErrorCode }
+} = require("../../utils/response.js");
 
-const { JobNotFoundError } = require('../../../../common/errors.js');
+const { JobNotFoundError } = require("../../../../common/errors.js");
 
 const createGetUserByEmailRoute = ({
   router,
   core: {
-    userCore: { getUserByEmail },
-  },
+    userCore: { getUserByEmail }
+  }
 }) => {
   /**
    * @api {get} /user/getUsersByEmail Get user by email
@@ -22,8 +22,8 @@ const createGetUserByEmailRoute = ({
    * @apiSuccess (200) {user} User
    */
   router.get(
-    '/getUserByEmail',
-    [check.param('email').isEmail()],
+    "/getUserByEmail",
+    [check.param("email").isEmail()],
     toApiResponse(async () => {
       try {
         const user = await getUserByEmail();
@@ -34,12 +34,12 @@ const createGetUserByEmailRoute = ({
           throw new ApiError({
             status: 404,
             code: notFoundErrorCode,
-            message: 'User not found.',
+            message: "User not found."
           });
         }
         throw error;
       }
-    }),
+    })
   );
 
   return router;

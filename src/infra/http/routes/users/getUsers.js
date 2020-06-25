@@ -1,14 +1,14 @@
-const check = require('express-validator');
+const check = require("express-validator");
 
-const { toApiResponse } = require('../../utils/response.js');
-const { toPagination } = require('../../utils/pagination.js');
+const { toApiResponse } = require("../../utils/response.js");
+const { toPagination } = require("../../utils/pagination.js");
 
 const createGetUsersRoute = ({
   router,
   application: {
-    users: { getUsers },
+    users: { getUsers }
   },
-  config: { origin },
+  config: { origin }
 }) => {
   /**
    * @api {get} /users/getUsers Get users
@@ -18,43 +18,43 @@ const createGetUsersRoute = ({
    * @apiSuccess (200) {users} Users.
    */
   router.get(
-    '/getUsers',
+    "/getUsers",
     [
       check
-        .query('perPage')
+        .query("perPage")
         .isInt({ min: 1, max: 100 })
         .toInt()
         .optional(),
       check
-        .query('page')
+        .query("page")
         .isInt({ min: 1 })
         .toInt()
         .optional(),
       check
-        .query('sort')
+        .query("sort")
         .isString()
-        .isIn(['email'])
+        .isIn(["email"])
         .optional(),
       check
-        .query('orderBy')
+        .query("orderBy")
         .isString()
-        .isIn(['desc', 'asc'])
-        .optional(),
+        .isIn(["desc", "asc"])
+        .optional()
     ],
     toApiResponse(async req => {
       const {
-        query: { perPage = 100, page = 1, sort = 'email', orderBy = 'desc' },
+        query: { perPage = 100, page = 1, sort = "email", orderBy = "desc" }
       } = req;
 
       const { rows, count } = await getUsers({
         page,
         perPage,
         sort,
-        orderBy,
+        orderBy
       });
 
       return toPagination(req, rows, count, origin);
-    }),
+    })
   );
 
   return router;

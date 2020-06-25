@@ -1,10 +1,10 @@
 // require('newrelic');
 
-const { port } = require('./config');
-const { createSequelize } = require('./infra/sequelize');
-const { createApp } = require('./infra/http/app');
-const { reportError } = require('./infra/report-error');
-const { Queue } = require('./common/queue.js');
+const { port } = require("./config");
+const { createSequelize } = require("./infra/sequelize");
+const { createApp } = require("./infra/http/app");
+const { reportError } = require("./infra/report-error");
+const { Queue } = require("./common/queue.js");
 
 (async () => {
   const sequelize = await createSequelize();
@@ -13,7 +13,7 @@ const { Queue } = require('./common/queue.js');
   const app = createApp({
     reportError,
     sequelize,
-    queue,
+    queue
   });
 
   const server = app.listen(port, () => {
@@ -25,7 +25,7 @@ const { Queue } = require('./common/queue.js');
       await Promise.all([
         await sequelize.close(),
         queue.close(),
-        await server.close(),
+        await server.close()
       ]);
       process.exit(0);
     } catch (err) {
@@ -33,6 +33,6 @@ const { Queue } = require('./common/queue.js');
     }
   };
 
-  process.on('SIGINT', cleanUp);
-  process.on('SIGTERM', cleanUp);
+  process.on("SIGINT", cleanUp);
+  process.on("SIGTERM", cleanUp);
 })();

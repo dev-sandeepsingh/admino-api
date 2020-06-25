@@ -1,14 +1,14 @@
-const { Datastore } = require('@google-cloud/datastore');
+const { Datastore } = require("@google-cloud/datastore");
 
-const { projectId, keyFilename } = require('../../config.js');
+const { projectId, keyFilename } = require("../../config.js");
 
 const createGetUsersFromFirestore = () => {
   const getUsersFromFirestore = async () => {
     const datastore = new Datastore({
       projectId,
-      keyFilename,
+      keyFilename
     });
-    const query = datastore.createQuery('users').limit(10);
+    const query = datastore.createQuery("users").limit(10);
 
     const userData = await datastore.runQuery(query);
 

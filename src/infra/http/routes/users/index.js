@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const { createGetUsersRoute } = require('./getUsers.js');
-const { createGetUserByEmailRoute } = require('./getUserByEmail.js');
-const { createAddUserRoute } = require('./addUser.js');
+const { Router } = require("express");
+const { createGetUsersRoute } = require("./getUsers.js");
+const { createGetUserByEmailRoute } = require("./getUserByEmail.js");
+const { createAddUserRoute } = require("./addUser.js");
 
 const createUsersRoute = ({ core, application, bruteforce, config }) => {
   const router = new Router();

@@ -1,8 +1,8 @@
-const { validationResult } = require('express-validator');
+const { validationResult } = require("express-validator");
 const {
   errorCodes: { validationErrorCode },
-  ApiError,
-} = require('./response.js');
+  ApiError
+} = require("./response.js");
 
 const validateInput = (req, res, next) => {
   const errors = validationResult(req);
@@ -14,7 +14,7 @@ const validateInput = (req, res, next) => {
 
   throw new ApiError({
     code: validationErrorCode,
-    details: errors.array(),
+    details: errors.array()
   });
 };
 module.exports = { validateInput };

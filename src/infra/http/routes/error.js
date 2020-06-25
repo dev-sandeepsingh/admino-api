@@ -1,8 +1,8 @@
 // const newrelic = require('newrelic');
 const {
   errorCodes: { internalServerErrorCode },
-  ApiError,
-} = require('../utils/response.js');
+  ApiError
+} = require("../utils/response.js");
 
 // eslint-disable-next-line no-unused-vars
 const createErrorRoute = ({ reportError }) => (error, req, res, next) => {
@@ -15,7 +15,7 @@ const createErrorRoute = ({ reportError }) => (error, req, res, next) => {
   const { status, code, message, details } = errorExpected
     ? error
     : new ApiError({
-        code: internalServerErrorCode,
+        code: internalServerErrorCode
       });
 
   // stringify details, because newrelic seems not to add custom parameters that are of type object
@@ -28,8 +28,8 @@ const createErrorRoute = ({ reportError }) => (error, req, res, next) => {
     error: {
       code,
       message,
-      details,
-    },
+      details
+    }
   });
 };
 

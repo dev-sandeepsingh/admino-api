@@ -1,15 +1,15 @@
 const {
-  createGetUsersFromFirestore,
-} = require('./get-users-from-firestore.js');
+  createGetUsersFromFirestore
+} = require("./get-users-from-firestore.js");
 
 const createFirestoreCore = () => {
   const getUsersFromFirestore = createGetUsersFromFirestore();
 
   return {
-    getUsersFromFirestore,
+    getUsersFromFirestore
   };
 };
 
 module.exports = {
-  createFirestoreCore,
+  createFirestoreCore
 };

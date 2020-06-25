@@ -1,18 +1,18 @@
-const Acl = require('acl');
-const AclMemoryRegexpBackend = require('acl-mem-regexp');
-const { AppError } = require('../../../common/errors');
-const { ROLES } = require('../../../core/user');
+const Acl = require("acl");
+const AclMemoryRegexpBackend = require("acl-mem-regexp");
+const { AppError } = require("../../../common/errors");
+const { ROLES } = require("../../../core/user");
 
 const acl = new Acl(new AclMemoryRegexpBackend()); // eslint-disable-line
 const rolesResources = [
   {
     roles: [ROLES.admin],
-    allows: [],
+    allows: []
   },
   {
     roles: [ROLES.user],
-    allows: [],
-  },
+    allows: []
+  }
 ];
 acl.allow(rolesResources);
 
@@ -23,7 +23,7 @@ const checkPermisssion = (role, resource, permission) =>
     acl.areAnyRolesAllowed(role, resource, permission, (err, isAllowed) => {
       if (err) {
         const error = new ForbiddenError({
-          details: err,
+          details: err
         });
         reject(error);
         return;

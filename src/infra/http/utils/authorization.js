@@ -1,8 +1,8 @@
 const {
   ApiError,
-  errorCodes: { forbiddenErrorCode },
-} = require('./response.js');
-const { checkPermisssion } = require('./acl-authorization.js');
+  errorCodes: { forbiddenErrorCode }
+} = require("./response.js");
+const { checkPermisssion } = require("./acl-authorization.js");
 
 const hasPermission = (predicate = () => true) => async (req, res, next) => {
   try {
@@ -11,8 +11,8 @@ const hasPermission = (predicate = () => true) => async (req, res, next) => {
     const isAllowed =
       (await checkPermisssion(
         session.role,
-        originalUrl.split('?')[0],
-        method.toLowerCase(),
+        originalUrl.split("?")[0],
+        method.toLowerCase()
       )) && (await predicate(req, session));
 
     if (isAllowed) {
@@ -22,8 +22,8 @@ const hasPermission = (predicate = () => true) => async (req, res, next) => {
 
     next(
       new ApiError({
-        code: forbiddenErrorCode,
-      }),
+        code: forbiddenErrorCode
+      })
     );
   } catch (error) {
     next(error);

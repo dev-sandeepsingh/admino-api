@@ -1,10 +1,10 @@
-const { toApiResponse } = require('../../utils/response.js');
+const { toApiResponse } = require("../../utils/response.js");
 
 const createDataFromFirestoreRoute = ({
   router,
   core: {
-    firestoreCore: { getUsersFromFirestore },
-  },
+    firestoreCore: { getUsersFromFirestore }
+  }
 }) => {
   /**
    * @api {get} /firestore/firestoreUsers Get users from firestore
@@ -14,11 +14,11 @@ const createDataFromFirestoreRoute = ({
    * @apiSuccess (200) {user} User
    */
   router.get(
-    '/firestoreUsers',
+    "/firestoreUsers",
     toApiResponse(async () => {
       const userData = await getUsersFromFirestore();
       return { status: 200, data: userData };
-    }),
+    })
   );
 
   return router;

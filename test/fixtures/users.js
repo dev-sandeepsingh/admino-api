@@ -1,14 +1,14 @@
 module.exports = [
   {
-    model: 'User',
+    model: "User",
     data: {
-      email: 'admin@admin.com',
-    },
+      email: "admin@admin.com"
+    }
   },
   {
-    model: 'User',
+    model: "User",
     data: {
-      email: 'user@gmail.com',
-    },
-  },
+      email: "user@gmail.com"
+    }
+  }
 ];

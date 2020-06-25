@@ -1,5 +1,5 @@
-const { createGetUserByEmail } = require('./get-user-by-email.js');
-const { createAddUser } = require('./add-user.js');
+const { createGetUserByEmail } = require("./get-user-by-email.js");
+const { createAddUser } = require("./add-user.js");
 
 const createUserCore = ({ sequelize }) => {
   const getUserByEmail = createGetUserByEmail({ sequelize });
@@ -7,10 +7,10 @@ const createUserCore = ({ sequelize }) => {
 
   return {
     getUserByEmail,
-    addUser,
+    addUser
   };
 };
 
 module.exports = {
-  createUserCore,
+  createUserCore
 };

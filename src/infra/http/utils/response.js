@@ -1,4 +1,4 @@
-const { AppError } = require('../../../common/errors');
+const { AppError } = require("../../../common/errors");
 
 const toApiResponse = fn => async (req, res, next) => {
   try {
@@ -7,7 +7,7 @@ const toApiResponse = fn => async (req, res, next) => {
       success: true,
       status,
       data,
-      meta,
+      meta
     });
   } catch (error) {
     next(error);
@@ -15,41 +15,41 @@ const toApiResponse = fn => async (req, res, next) => {
 };
 
 const errorCodes = {
-  notFoundErrorCode: 'notFoundError',
-  badRequestErrorCode: 'badRequestError',
-  internalServerErrorCode: 'internalServerError',
-  validationErrorCode: 'validationError',
-  emailAlreadyExistsErrorCode: 'emailAlreadyExistsErrorCode',
+  notFoundErrorCode: "notFoundError",
+  badRequestErrorCode: "badRequestError",
+  internalServerErrorCode: "internalServerError",
+  validationErrorCode: "validationError",
+  emailAlreadyExistsErrorCode: "emailAlreadyExistsErrorCode"
 };
 const errors = {
   [errorCodes.badRequestErrorCode]: {
     status: 400,
-    message: 'Bad request',
+    message: "Bad request"
   },
   [errorCodes.notFoundErrorCode]: {
     status: 404,
-    message: 'Resource not found',
+    message: "Resource not found"
   },
   [errorCodes.internalServerErrorCode]: {
     status: 500,
-    message: 'Internal server error',
+    message: "Internal server error"
   },
   [errorCodes.validationErrorCode]: {
     status: 422,
-    message: 'Validation error',
+    message: "Validation error"
   },
   [errorCodes.unauthorizedErrorCode]: {
     status: 401,
-    message: 'Unauthorized',
+    message: "Unauthorized"
   },
   [errorCodes.forbiddenErrorCode]: {
     status: 403,
-    message: 'Not allowed to access the resource',
+    message: "Not allowed to access the resource"
   },
   [errorCodes.tooManyRequestsErrorCode]: {
     status: 429,
-    message: 'Too many requests in this timeframe',
-  },
+    message: "Too many requests in this timeframe"
+  }
 };
 
 class ApiError extends AppError {

@@ -1,6 +1,6 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || "development";
 
 const config = {
   development: {
@@ -8,31 +8,31 @@ const config = {
     rollbarAccessToken: process.env.ROLLBAR_ACCESS_TOKEN,
     reportErrorRequest: false,
     cors: {
-      origin: ['http://localhost:3000', 'http://182.28.0.1:3000'],
+      origin: ["http://localhost:3000", "http://182.28.0.1:3000"]
     },
     docs: {
-      username: 'dev',
-      password: 'dev',
+      username: "dev",
+      password: "dev"
     },
-    origin: 'http://localhost:8080',
-    redisUrl: 'redis://192.38.1.3:6388',
+    origin: "http://localhost:8080",
+    redisUrl: "redis://192.38.1.3:6388",
     ff: {
-      httpBruteProtection: true,
+      httpBruteProtection: true
     },
     projectId: process.env.PROJECT_ID,
-    keyFilename: process.env.KEY_FILE_NAME,
+    keyFilename: process.env.KEY_FILE_NAME
   },
   test: {
     port: 3000,
     rollbarAccessToken: null,
     reportErrorRequest: false,
     cors: {
-      origin: [],
+      origin: []
     },
-    redisUrl: 'redis://192.38.1.4:6381',
+    redisUrl: "redis://192.38.1.4:6381",
     ff: {
-      httpBruteProtection: false,
-    },
+      httpBruteProtection: false
+    }
   },
   production: {
     port: process.env.PORT || 8080,
@@ -40,17 +40,17 @@ const config = {
     reportErrorRequest: true,
 
     cors: {
-      origin: (process.env.CORS_ORIGIN || '').split(','),
+      origin: (process.env.CORS_ORIGIN || "").split(",")
     },
     docs: {
       username: process.env.DOCS_USERNAME,
-      password: process.env.DOCS_PASSWORD,
+      password: process.env.DOCS_PASSWORD
     },
     redisUrl: process.env.REDIS_URL,
     ff: {
-      httpBruteProtection: true,
-    },
-  },
+      httpBruteProtection: true
+    }
+  }
 };
 
 module.exports = config[env];

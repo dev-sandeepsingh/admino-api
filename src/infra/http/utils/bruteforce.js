@@ -1,18 +1,18 @@
-const ExpressBrute = require('express-brute');
-const ExpressBruteStoreSequelize = require('express-brute-store-sequelize');
+const ExpressBrute = require("express-brute");
+const ExpressBruteStoreSequelize = require("express-brute-store-sequelize");
 const {
   errorCodes: { tooManyRequestsErrorCode },
-  ApiError,
-} = require('./response.js');
+  ApiError
+} = require("./response.js");
 const {
-  ff: { httpBruteProtection },
-} = require('../../../config');
+  ff: { httpBruteProtection }
+} = require("../../../config");
 
 const createBruteforce = ({
   sequelize,
   reportError,
   minWait = 500,
-  freeRetries = 3,
+  freeRetries = 3
 }) => {
   if (!httpBruteProtection) {
     return { getMiddleware: () => (req, res, next) => next() };
@@ -34,10 +34,10 @@ const createBruteforce = ({
     failCallback: (req, resp, next, nextValidRequestDate) => {
       const error = new ApiError({
         code: tooManyRequestsErrorCode,
-        details: { nextValidRequestDate },
+        details: { nextValidRequestDate }
       });
       next(error);
-    },
+    }
   };
   const store = new ExpressBruteStoreSequelize(sequelize.db);
   return new ExpressBrute(store, options);

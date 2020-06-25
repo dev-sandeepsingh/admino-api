@@ -1,8 +1,8 @@
 module.exports = [
   {
-    email: 'admin#admin.com',
+    email: "admin#admin.com"
   },
   {
-    email: 'user@user.com',
-  },
+    email: "user@user.com"
+  }
 ];

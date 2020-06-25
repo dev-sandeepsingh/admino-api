@@ -1,9 +1,9 @@
 module.exports = {
   up: (queryInterface, { DATE, STRING, INTEGER }) =>
-    queryInterface.createTable('ExpressBrutes', {
+    queryInterface.createTable("ExpressBrutes", {
       key: {
         type: STRING,
-        primaryKey: true,
+        primaryKey: true
       },
       lifetime: DATE,
       firstRequest: DATE,
@@ -11,12 +11,12 @@ module.exports = {
       count: INTEGER,
       createdAt: {
         allowNull: false,
-        type: DATE,
+        type: DATE
       },
       updatedAt: {
         allowNull: false,
-        type: DATE,
-      },
+        type: DATE
+      }
     }),
-  down: queryInterface => queryInterface.dropTable('ExpressBrutes'),
+  down: queryInterface => queryInterface.dropTable("ExpressBrutes")
 };

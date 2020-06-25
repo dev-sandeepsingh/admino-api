@@ -1,8 +1,8 @@
-const { createUser } = require('./user/index.js');
+const { createUser } = require("./user/index.js");
 
 const createApplication = ({ sequelize }) => {
   const users = createUser({
-    sequelize,
+    sequelize
   });
 
   return { users };

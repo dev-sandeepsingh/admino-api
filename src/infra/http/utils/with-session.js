@@ -1,17 +1,17 @@
 // const newrelic = require('newrelic');
 // const { withCsrfToken } = require('./csrf');
-const { ROLES } = require('../../../core/user');
+const { ROLES } = require("../../../core/user");
 const {
   ApiError,
-  errorCodes: { unauthorizedErrorCode },
-} = require('./response.js');
+  errorCodes: { unauthorizedErrorCode }
+} = require("./response.js");
 
-const { csrfProtection } = require('../../../config');
+const { csrfProtection } = require("../../../config");
 
 const withSession = [
   (req, res, next) => {
     const {
-      session: { userId, role },
+      session: { userId, role }
     } = req;
 
     if (!userId) {
@@ -28,15 +28,15 @@ const withSession = [
     // withCsrfToken(req, res, next);
   },
   (error, req, res, next) => {
-    if (error.code === 'EBADCSRFTOKEN') {
+    if (error.code === "EBADCSRFTOKEN") {
       throw new ApiError({
         code: unauthorizedErrorCode,
-        message: 'Bad CSRF token',
+        message: "Bad CSRF token"
       });
     }
 
     next(error);
-  },
+  }
 ];
 
 module.exports = { withSession };

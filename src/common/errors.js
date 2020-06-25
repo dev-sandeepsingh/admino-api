@@ -12,5 +12,5 @@ class EmailAlreadyExistsError extends AppError {}
 
 module.exports = {
   AppError,
-  EmailAlreadyExistsError,
+  EmailAlreadyExistsError
 };
