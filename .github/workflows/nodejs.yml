@@ -44,10 +44,7 @@ jobs:
 
     - name: Check code quality
       run: npm run lint
-
-    - name: Test
-      run: npm test
-    
+       
     - name: Slack notification
       if: success()
       env:
