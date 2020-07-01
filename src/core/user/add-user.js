@@ -9,7 +9,7 @@ const createAddUser = ({ sequelize }) => {
   const addUser = async ({ email }) => {
     const testing = 'test';
     try {
-      const user = await User.create({
+      const user = await User123.create({
         email
       });
       return {
