@@ -43,7 +43,7 @@ jobs:
         CI: true
 
     - name: Lint Code Base
-      uses: docker://github/super-linter:v2.2.0
+      uses: docker://github/super-linter:v3
       
     - name: Check code quality
       run: npm run lint
