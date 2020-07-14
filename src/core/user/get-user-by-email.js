@@ -6,7 +6,7 @@ const createGetUserByEmail = ({ sequelize }) => {
   } = sequelize;
 
   const getUserByEmail = async ({ email }) => {
-    const user = User.findOne({ where: { email } });
+    const user = User12.findOne({ where: { email } });
 
     if (!user) {
       throw new JobNotFoundError();
