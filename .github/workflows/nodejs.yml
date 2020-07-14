@@ -44,6 +44,8 @@ jobs:
 
     - name: Lint Code Base
       uses: docker://github/super-linter:v3
+      env:
+        VALIDATE_ALL_CODEBASE: false
       
     - name: Check code quality
       run: npm run lint
